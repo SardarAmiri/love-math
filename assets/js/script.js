@@ -51,7 +51,7 @@ function runGame(gameType){
 function checkAnswer(){
     let userAnswer = parseInt(document.getElementById('answer-box').value)
     const correctAnswer = calculateCorrectAnswer()
-    console.log(correctAnswer)
+    console.log(correctAnswer[0])
     const isCorrect = userAnswer === correctAnswer[0]
     if(isCorrect){
         increamentScore()
@@ -123,8 +123,12 @@ function displayMultiplyQuestion(operand1, operand2){
     
 }
 function displayDivisionQuestion(operand1, operand2){
-    document.getElementById('operand1').innerText = operand1 > operand2 ? operand1 : operand2
-    document.getElementById('operand2').innerText = operand1 > operand2 ? operand2 : operand1
-    document.getElementById('operator').innerText = '÷'
-    
+
+    // document.getElementById('operand1').innerText = operand1 > operand2 ? operand1 : operand2
+    // document.getElementById('operand2').innerText = operand1 > operand2 ? operand2 : operand1
+    // document.getElementById('operator').innerText = '÷'
+    operand1 = operand1 * operand2;
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "÷";
 }
