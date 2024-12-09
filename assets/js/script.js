@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
     }
+    document.getElementById('answer-box').addEventListener('keydown', function(e) {
+        if(e.key === 'Enter'){
+            checkAnswer()
+        }
+    })
     runGame('addition')
 })
 /**
@@ -17,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function () {
  * and after the user's answer has been processed
  */
 function runGame(gameType){
+    document.getElementById('answer-box').value = ''
+    document.getElementById('answer-box').focus()
+
     let num1 = Math.floor(Math.random() * 25 + 1)
     let num2 = Math.floor(Math.random() * 25 + 1)
 
@@ -41,7 +49,7 @@ function runGame(gameType){
  * Check user answer and the correct answer return from calculateCorrectAnswer function
  */
 function checkAnswer(){
-    const userAnswer = parseInt(document.getElementById('answer-box').value)
+    let userAnswer = parseInt(document.getElementById('answer-box').value)
     const correctAnswer = calculateCorrectAnswer()
     console.log(correctAnswer)
     const isCorrect = userAnswer === correctAnswer[0]
@@ -50,6 +58,7 @@ function checkAnswer(){
     }else {
         increatmentWrongAnswer()
     }
+    
     runGame(correctAnswer[1])
     
 }
@@ -75,12 +84,7 @@ function calculateCorrectAnswer(){
             throw `unimplemented operator ${operator}`
 
     }
-    // if(operator === '+'){
-    //     return [operand1 + operand2, 'addition']
-    // }else {
-    //     alert('unimplemented operator', operator)
-    //     throw `unimplemented operator ${operator}`
-    // }
+   
     
 }
 
@@ -107,8 +111,8 @@ function displayAdditionQuestion(operand1, operand2){
     
 }
 function displaySubtractQuestion(operand1, operand2){
-    document.getElementById('operand1').innerText = operand1
-    document.getElementById('operand2').innerText = operand2
+    document.getElementById('operand1').innerText = operand1 > operand2 ? operand1 : operand2
+    document.getElementById('operand2').innerText = operand1 > operand2 ? operand2 : operand1
     document.getElementById('operator').innerText = '-'
     
 }
@@ -119,8 +123,8 @@ function displayMultiplyQuestion(operand1, operand2){
     
 }
 function displayDivisionQuestion(operand1, operand2){
-    document.getElementById('operand1').innerText = operand1
-    document.getElementById('operand2').innerText = operand2
+    document.getElementById('operand1').innerText = operand1 > operand2 ? operand1 : operand2
+    document.getElementById('operand2').innerText = operand1 > operand2 ? operand2 : operand1
     document.getElementById('operator').innerText = '÷'
     
 }
