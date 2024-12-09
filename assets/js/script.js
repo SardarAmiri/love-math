@@ -43,11 +43,12 @@ function runGame(gameType){
 function checkAnswer(){
     const userAnswer = parseInt(document.getElementById('answer-box').value)
     const correctAnswer = calculateCorrectAnswer()
+    console.log(correctAnswer)
     const isCorrect = userAnswer === correctAnswer[0]
     if(isCorrect){
         increamentScore()
     }else {
-        increamentScore()
+        increatmentWrongAnswer()
     }
     runGame(correctAnswer[1])
     
@@ -60,12 +61,26 @@ function calculateCorrectAnswer(){
     let operand1 = parseInt(document.getElementById('operand1').innerText)
     let operand2 = parseInt(document.getElementById('operand2').innerText)
     let operator = document.getElementById('operator').innerText
-    if(operator === '+'){
-        return [operand1 + operand2, 'addition']
-    }else {
-        alert('unimplemented operator', operator)
-        throw `unimplemented operator ${operator}`
+    switch(operator){
+        case '+':
+            return [operand1 + operand2, 'addition']
+        case '-':
+            return [operand1 - operand2, 'subtract']
+        case 'x':
+            return [operand1 * operand2, 'multiply']
+        case '÷':
+            return [operand1 / operand2, 'devision']
+        default:
+            alert('unimplemented operator', operator)
+            throw `unimplemented operator ${operator}`
+
     }
+    // if(operator === '+'){
+    //     return [operand1 + operand2, 'addition']
+    // }else {
+    //     alert('unimplemented operator', operator)
+    //     throw `unimplemented operator ${operator}`
+    // }
     
 }
 
